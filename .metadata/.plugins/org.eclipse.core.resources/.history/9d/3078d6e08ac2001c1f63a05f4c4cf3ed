@@ -1,0 +1,18 @@
+
+public class FindCycleInUnDirectedGraph {
+	
+	public static void main(String [] args) {
+		FindCycleInUnDirectedGraph directedGraph = new FindCycleInUnDirectedGraph();
+		int [][] A = {{1,2}};
+		int B = 2;
+		directedGraph.solve(B, A);
+	}
+	
+	public int solve(int A, int[][] B) {
+        if(A>=B.length){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+}

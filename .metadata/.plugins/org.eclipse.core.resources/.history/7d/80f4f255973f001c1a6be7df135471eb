@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Interval> intervals = new ArrayList<>();
+		intervals.add(new Interval(1, 4));
+		intervals.add(new Interval(3, 8));
+		intervals.add(new Interval(7, 13));
+		intervals.add(new Interval(12, 16));
+		intervals.add(new Interval(15, 20));
+		Solution s = new Solution();
+		s.merge(intervals);
+	}
+	
+	public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
+		int oStart = 0;
+		int oEnd = 0;
+		for (int j = 0; j < intervals.size()-1; j++) {
+			if(j>0 && intervals.get(j).start > intervals.get(j-1).start && intervals.get(j).start < intervals.get(j-1).end && oStart == 0 ) {
+				oStart = intervals.get(j-1).start;
+			}
+			if(j>0 && intervals.get(j).end < intervals.get(j+1).start && intervals.get(j).end > intervals.get(j-1).end && oStart != 0) {
+				oEnd = intervals.get(j).end;
+				System.out.println(oStart +" : "+ oEnd);
+				oStart = 0;
+				
+			}
+			if(j==intervals.size()-1 && oStart!=0) {
+				oEnd = intervals.get(j).end;
+			}
+		}
+		
+        return intervals;
+    }
+
+}

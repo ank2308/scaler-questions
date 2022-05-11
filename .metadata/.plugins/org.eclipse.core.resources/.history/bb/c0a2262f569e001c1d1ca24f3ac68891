@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+
+public class MergeIntervals {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Interval> intervals = new ArrayList<>();
+		intervals.add(new Interval(1, 20));
+		intervals.add(new Interval(3, 8));
+		intervals.add(new Interval(9, 13));
+		intervals.add(new Interval(12, 16));
+		intervals.add(new Interval(14, 20));
+		
+		MergeIntervals mi = new MergeIntervals();
+		mi.merge(intervals);
+	}
+	public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
+		intervals.sort((Interval i1, Interval i2) -> i1.start-i2.start);
+		intervals.forEach(i->System.out.println(i.start));
+		return null;
+	}
+}

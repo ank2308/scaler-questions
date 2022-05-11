@@ -1,0 +1,14 @@
+
+public class MAxSumWithoutLargestElement {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int [] [] A = {{1,2,3,4},{2,3,4,5}};
+	}
+	
+	public int adjacent(int[][] A) {
+		return A.length;
+//		int [] finalAr = new int [A.length];
+    }
+
+}

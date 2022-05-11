@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class SubArrayZeroSum {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int [] A = {1,-1};
+		SubArrayZeroSum sm = new SubArrayZeroSum();
+		System.out.println(sm.solve(A));
+	}
+	public int solve(int[] A) {
+		int preSum =0;
+		List<Integer> preSumList = new ArrayList<Integer>();
+		for (int i = 0; i < A.length; i++) {
+			preSum = preSum + A[i];
+			if(preSumList.contains(preSum)) {
+				return 1;
+			} else {
+				preSumList.add(preSum);
+			}
+		}
+		return 0;
+    }
+
+}

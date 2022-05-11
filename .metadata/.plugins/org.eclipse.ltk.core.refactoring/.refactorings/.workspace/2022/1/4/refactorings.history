@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;AdvancedTrees&apos; to &apos;Tree-Advanced&apos;" description="Rename resource &apos;AdvancedTrees&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/AdvancedTrees" name="Tree-Advanced" stamp="1642849495723" updateReferences="true"/>
+</session>

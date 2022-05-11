@@ -1,0 +1,24 @@
+import java.util.HashMap;
+
+public class ShaggyAndDistances {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int [] A = {7, 1, 3, 4, 1, 7};
+		ShaggyAndDistances sd = new ShaggyAndDistances();
+		sd.solve(A);
+	}
+	
+	public int solve(int[] A) {
+		HashMap<Integer, Integer> distances = new HashMap<Integer, Integer>();
+		for (int i = 0; i < A.length; i++) {
+			if(distances.containsKey(A[i])) {
+				distances.replace(A[i], distances.get(A[i]), distances.get(A[i]) + 1);
+			} else {
+				distances.put(A[i], 1);
+			}
+		}
+		return 0;
+    }
+
+}

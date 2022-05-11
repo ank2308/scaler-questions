@@ -1,0 +1,37 @@
+import java.util.Stack;
+
+public class LongestValidSubstring {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LongestValidSubstring longestValidSubstring = new LongestValidSubstring();
+		System.out.println(longestValidSubstring.LBSlength("(){}"));
+	}
+
+	public int LBSlength(final String A) {
+		char [] string = A.toCharArray();
+		Stack<Integer> stack = new Stack<>();
+		stack.add(-1);
+		int maxLength=0;
+		int tempLength=0;
+		for (int i = 0; i < string.length; i++) {
+			if(string[i] == '(' || string[i] == '[' || string[i] == '{') {
+				tempLength++;
+				stack.push(tempLength);
+			} else {
+				if (stack.peek() == -1) {
+					maxLength = Math.max(maxLength, tempLength);
+					tempLength = 0;
+				} else {
+					stack.pop();
+					tempLength++;
+					if (stack.peek() == -1) {
+						maxLength = Math.max(maxLength, tempLength);
+						tempLength = 0;
+					}
+				}
+			}			
+		}
+		return maxLength;
+    }
+}

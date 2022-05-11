@@ -1,0 +1,20 @@
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
+class LRUCache {
+    
+    Deque<Integer> cacheValue = new LinkedList<>();
+    public LRUCache(int capacity) {
+        
+    }
+    
+    public int get(int key) {
+		return key;
+        
+    }
+    
+    public void put(int key, int value) {
+        
+    }
+}

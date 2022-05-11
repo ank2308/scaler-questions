@@ -1,0 +1,91 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
+public class VerticalOrderTraversal {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TreeNode A = new TreeNode(5090);
+		A.left = new TreeNode(9569);
+		A.left.left = new TreeNode(3628);
+		
+		
+		VerticalOrderTraversal orderTraversal = new VerticalOrderTraversal();
+		ArrayList<ArrayList<Integer>> ansReturn = orderTraversal.verticalOrderTraversal(A);
+		System.out.println("abc");
+	}
+	public ArrayList<ArrayList<Integer>> verticalOrderTraversal(TreeNode A) {
+		int min=0, max=0;
+		int [] minMax = {0, 0};
+		minMax = findMinMax(A, min, max, minMax);
+		HashMap<Integer, ArrayList<Integer>> ans = new HashMap<>();
+		ArrayList<ArrayList<Integer>> ansReturn = new ArrayList<>();
+		ans = verticalTraversal(A, minMax[0], ans, 0);
+		Iterator<Integer> iterator = ans.keySet().iterator();
+	    while (iterator.hasNext()) {
+	        Integer key = iterator.next();
+	        ansReturn.add(ans.get(key));
+	    }
+	    return ansReturn;
+    }
+	
+	private int[] findMinMax (TreeNode A,int min,int max, int [] minMax) {
+		if(A==null) {			
+			return minMax;
+		}
+		minMax[0] = Math.min(minMax[0], min);
+		minMax[1] = Math.max(max, minMax[1]);
+		minMax = findMinMax(A.left,min-1,max,minMax);
+		minMax = findMinMax(A.right, min, max+1, minMax);
+		return minMax;
+	}
+	
+	private HashMap<Integer, ArrayList<Integer>> verticalTraversal(TreeNode A, int min,HashMap<Integer, ArrayList<Integer>> hashMap, int dist){
+		if(A==null) {
+			return hashMap;
+		}
+		if(hashMap.containsKey(dist-min)) {
+			ArrayList<Integer> tempNode = hashMap.get(dist-min);
+			tempNode.add(A.val);
+			hashMap.replace(dist-min, tempNode);
+		} else {
+			ArrayList<Integer> arList = new ArrayList<>();
+			arList.add(A.val);
+			hashMap.put(dist-min, arList);
+		}
+		hashMap = verticalTraversal(A.left, min, hashMap, dist-1);
+		hashMap = verticalTraversal(A.right, min, hashMap, dist+1);
+		return hashMap;
+	}
+	public ArrayList<ArrayList<Integer>> levelOrder(TreeNode A, int min,HashMap<Integer, ArrayList<Integer>> hashMap, int dist) {
+		ArrayList<ArrayList<Integer>> levelElements = new ArrayList<>();
+		Queue<HashMap<Integer, Integer>> listTree = new LinkedList<>();
+		HashMap<Integer, TreeNode> nodeWithDistance = new HashMap<>();
+		nodeWithDistance.put(dist, A.val);
+		while(true) {
+			if(listTree.isEmpty()) {
+				break;
+			}
+			int nodeCount = listTree.size();
+			ArrayList<Integer> level = new ArrayList<Integer>();
+			while (nodeCount > 0) {
+				TreeNode node = listTree.peek();
+				level.add(node.val);
+				listTree.poll();
+				if(node.left!=null) {
+					listTree.add(node.left);
+				}
+				if(node.right!=null) {
+					listTree.add(node.right);
+				}
+				nodeCount--;
+			}
+			levelElements.add(level);
+		}
+		return levelElements;
+    }
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;ans&apos; in &apos;ProductOfThree.solve(...)&apos; to &apos;minHeap&apos;&#x0D;&#x0A;- Original project: &apos;Heap&apos;&#x0D;&#x0A;- Original element: &apos;ProductOfThree.solve(int[]).ans&apos;&#x0D;&#x0A;- Renamed element: &apos;ans&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;ans&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{ProductOfThree.java[ProductOfThree~solve~\[I@ans!247!278!254!256!\[I!0!false" name="minHeap" references="true" stamp="1643184003948" version="1.0"/>
+</session>

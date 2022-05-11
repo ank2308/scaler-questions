@@ -1,0 +1,26 @@
+
+public class RegularExpMatch {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public int isMatch(String A, String B) {
+		if(A.length() == 0 && B.length() == 0) {
+			return 1;
+		}
+		if(A.length() == 0 || B.length() == 0) {
+			return 0;
+		}
+		if(A.charAt(A.length()-1) == B.charAt(B.length()-1)) {
+			return isMatch(A.substring(0, A.length()-2), B.substring(0, B.length()-2));
+		} else {
+			if (B.charAt(B.length()-1) == '?') {
+				return isMatch(A.substring(0, A.length()-2), B.substring(0, B.length()-2));
+			} else if (B.charAt(B.length()-1) == '*') {
+				return (int) Math.max((A.substring(0, A.length()-2), B.substring(0, B.length()-2)), isMatch(A.substring(0, A.length()-2), B.substring(0, B.length()-1)));
+			}
+		}
+	}
+}

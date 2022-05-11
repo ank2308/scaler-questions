@@ -1,0 +1,12 @@
+
+public class RobHouse {
+	public int rob(int[] nums) {
+        return findMaxMoney(nums, nums.length-1, 0);
+    }
+    private int findMaxMoney(int [] nums, int index, int money){
+        if (index<=0){
+            return money;
+        }
+        return Math.max(findMaxMoney(nums, index-1, money), findMaxMoney(nums, index-2, money+nums[index]));
+    }
+}

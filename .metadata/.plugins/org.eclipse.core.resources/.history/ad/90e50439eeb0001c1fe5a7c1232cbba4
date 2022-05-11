@@ -1,0 +1,23 @@
+
+public class NdigitNumbe {
+
+	public static void main(String[] args) {
+		NdigitNumbe ndigitNumbe = new NdigitNumbe();
+		System.out.println(ndigitNumbe.solve(2, 4));
+	}
+	
+	public int solve(int A, int B) {
+		return findSum(A, B, 0);
+    }
+	
+	private int findSum (int i, int j, int sum) {
+		if(i>=0&&j==0) {
+			sum=sum+1;
+			return sum;
+		} 
+		for (int k = 1; k <= j; k++) {
+			sum = findSum(i-1, j-k, sum);
+		}
+		return sum;
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;RegularExpMatch.isMatch(...)&apos; to &apos;matchWildCard&apos;&#x0D;&#x0A;- Original project: &apos;DynamicProgramming&apos;&#x0D;&#x0A;- Original element: &apos;RegularExpMatch.isMatch(...)&apos;&#x0D;&#x0A;- Renamed element: &apos;RegularExpMatch.matchWildCard(...)&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;isMatch&apos;" flags="589826" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;{RegularExpMatch.java[RegularExpMatch~isMatch~QString;~QString;" name="matchWildCard" references="true" stamp="1648704020732" version="1.0"/>
+</session>

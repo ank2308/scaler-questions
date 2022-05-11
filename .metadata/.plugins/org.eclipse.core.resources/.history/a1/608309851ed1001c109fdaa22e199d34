@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class BFSWrightedGraph {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	int [] visitedAr;
+	
+	public int solve(int A, int[][] B, int C, int D) {
+		HashMap<Integer, ArrayList<Integer>> adjMatrix = makeAdjMatrix(B);
+		
+    }
+	
+	private HashMap<Integer, ArrayList<Integer>> makeAdjMatrix (int [][]A ) {
+		HashMap<Integer, ArrayList<Integer>> adjMatrix = new HashMap<>();
+		for (int i = 0; i < A.length; i++) {
+			ArrayList<Integer> tempList;
+			if(adjMatrix.containsKey(A[i][0])){
+				tempList = adjMatrix.get(A[i][0]);
+				tempList.add(A[i][1]);
+				tempList.add(A[i][2]);
+				adjMatrix.replace(A[i][0], tempList);
+			} else {
+				tempList = new ArrayList<>();
+				tempList.add(A[i][1]);
+				tempList.add(A[i][2]);
+				adjMatrix.put(A[i][0], tempList);
+			}
+			if(adjMatrix.containsKey(A[i][1])){
+				tempList = adjMatrix.get(A[i][1]);
+				tempList.add(A[i][0]);
+				tempList.add(A[i][2]);
+				adjMatrix.replace(A[i][1], tempList);
+			} else {
+				tempList = new ArrayList<>();
+				tempList.add(A[i][0]);
+				tempList.add(A[i][2]);
+				adjMatrix.put(A[i][1], tempList);
+			}
+		}
+		return adjMatrix;
+	}
+
+}

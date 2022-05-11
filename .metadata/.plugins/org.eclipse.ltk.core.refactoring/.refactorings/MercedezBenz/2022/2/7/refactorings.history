@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;tempfuelCapacity&apos; in &apos;FinalProblem.findMaxDistance(...)&apos; to &apos;tempFuelCapacity&apos;&#x0D;&#x0A;- Original project: &apos;MercedezBenz&apos;&#x0D;&#x0A;- Original element: &apos;FinalProblem.findMaxDistance(int[], int[], int, int).tempfuelCapacity&apos;&#x0D;&#x0A;- Renamed element: &apos;tempfuelCapacity&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;tempfuelCapacity&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{FinalProblem.java[FinalProblem~findMaxDistance~\[I~\[I~I~I@tempfuelCapacity!359!426!363!378!I!0!false" name="tempFuelCapacity" references="true" stamp="1644143543827" version="1.0"/>
+</session>

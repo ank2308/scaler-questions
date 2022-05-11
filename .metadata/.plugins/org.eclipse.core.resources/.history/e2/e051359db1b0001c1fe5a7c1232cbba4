@@ -1,0 +1,31 @@
+
+public class RegularExpMatch {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String A = "aabb";
+		String B = "?*";
+		RegularExpMatch rm = new RegularExpMatch();
+		System.out.println(rm.isMatch(A, B));
+	}
+	
+	public int isMatch(String A, String B) {
+		if(A.length() == 0 && B.length() == 0) {
+			return 1;
+		}
+		if(A.length() == 0 || B.length() == 0) {
+			return 0;
+		}
+		if(A.charAt(A.length()-1) == B.charAt(B.length()-1)) {
+			return isMatch(A.substring(0, A.length()-1), B.substring(0, B.length()-1));
+		} else {
+			if (B.charAt(B.length()-1) == '?') {
+				return isMatch(A.substring(0, A.length()-1), B.substring(0, B.length()-1));
+			} else if (B.charAt(B.length()-1) == '*') {
+				return (int) Math.max(isMatch(A.substring(0, A.length()-1), B.substring(0, B.length())), isMatch(A.substring(0, A.length()-1), B.substring(0, B.length()-1)));
+			} else {
+				return isMatch(A , B.substring(0, B.length()-1));
+			}
+		}
+	}
+}

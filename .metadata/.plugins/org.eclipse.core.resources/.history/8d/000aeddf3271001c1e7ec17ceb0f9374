@@ -1,0 +1,55 @@
+public class HeightBalancedBinarySearchTree {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TreeNode A = new TreeNode(3) ;
+		A.right = new TreeNode(20);
+		A.right.left = new TreeNode(15);
+		A.right.right = new TreeNode(7);
+		HeightBalancedBinarySearchTree heightBalancedBinarySearchTree = new HeightBalancedBinarySearchTree();
+		System.out.println(heightBalancedBinarySearchTree.isValidBST(A));
+	}
+
+	private class Info {
+		int height;
+		boolean isBalanced;
+		int min;
+		int max;
+		public Info(int height, boolean isBalanced, int min, int max) {
+			this.height = height;
+			this.isBalanced = isBalanced;
+			this.min = min;
+			this.max = max;
+		}
+	}
+	
+	private Info isHeightBalanced(TreeNode A) {
+		if(A==null) {
+			return new Info(0, true, 0, 0);
+		}
+		Info LInfo = isHeightBalanced(A.left);
+		Info RInfo = isHeightBalanced(A.right);
+		int hCurrent = 1 + Math.max(LInfo.height, RInfo.height);
+		boolean isCurrentBalanced = ((Math.abs(LInfo.height - RInfo.height) <=1) && LInfo.isBalanced && RInfo.isBalanced && A.val >= LInfo.max && A.val<=RInfo.min);
+		if(A.left == null && A.right == null) {
+			return new Info(hCurrent, isCurrentBalanced, 0, 0);
+		} else if(A.left == null) {
+			return new Info(hCurrent, isCurrentBalanced, 0, A.right.val);
+		} else if(A.right == null) {
+			return new Info(hCurrent, isCurrentBalanced, A.left.val, 0);
+		} else {
+			return new Info(hCurrent, isCurrentBalanced, A.left.val, A.right.val);
+		}
+		
+	}
+	
+	public int isValidBST(TreeNode A) {
+		if (isHeightBalanced(A).isBalanced) {
+			return 1;
+		} else {
+			return 0;
+		}
+    }
+	
+	
+}

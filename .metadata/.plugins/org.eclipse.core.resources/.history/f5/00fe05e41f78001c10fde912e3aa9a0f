@@ -1,0 +1,85 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Stack;
+
+public class LCAOfTwoNodes {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TreeNode A = new TreeNode(1) ;
+		A.left = new TreeNode(2);
+		A.right = new TreeNode(3);
+		A.left.left = new TreeNode(4);
+		A.left.right = new TreeNode(5);
+		LCAOfTwoNodes lcaOfTwoNodes = new LCAOfTwoNodes();
+		System.out.println(lcaOfTwoNodes.lca(A, 4, 8));
+	}
+	
+	ArrayList<Integer> tempTraversal ;
+	
+	public int lca(TreeNode A, int B, int C) {
+		ArrayList<Integer> tempTraversal1 = new ArrayList<>();
+		ArrayList<Integer> BTraversal ;
+		ArrayList<Integer> CTraversal ;
+		findTraversal(tempTraversal1, A, B);
+		BTraversal = tempTraversal;
+		tempTraversal = new ArrayList<>();
+		findTraversal(tempTraversal, A, C);
+		CTraversal = tempTraversal;
+		int length = Math.min(BTraversal.size(), CTraversal.size());
+		int ans = -1;
+		if(BTraversal == null || CTraversal == null) {
+			return -1;
+		} else {
+			for (int i = 0; i < length; i++) {
+				if(BTraversal.get(i) != CTraversal.get(i)) {
+					return ans;
+				} else {
+					ans = BTraversal.get(i);
+				}
+			}
+		}
+		return ans;
+    }
+	
+	public TreeNode findLCA(TreeNode A, int B, int C) {
+        if(A == null || A.val==B || A.val==C) {
+            return A;
+        }
+        TreeNode left = findLCA(A.left, B, C);
+        TreeNode right = findLCA(A.right, B, C);
+        if(left == null ){
+            return right;
+        } else if (right == null){
+            return left;
+        } else {
+            return A;
+        }
+    }
+	
+	private void findTraversal (ArrayList<Integer> traversal, TreeNode A, int val) {
+		if(A == null) {
+			return ;
+		}
+		Stack<TreeNode> treeStack = new Stack<>();
+		TreeNode currNode = A;
+		TreeNode prevNode = null;
+		treeStack.push(A);
+		tempTraversal = new ArrayList<>();
+		while (!treeStack.isEmpty() || currNode != null) {
+			if(currNode != null) {
+				tempTraversal.add(currNode.val);
+				if(currNode.val == val) {
+					return;
+				}
+				treeStack.add(currNode);
+				currNode = currNode.left;						
+			} else {
+				tempTraversal.remove(tempTraversal.size()-1);
+				prevNode = treeStack.pop();
+				currNode = prevNode.right;
+			}
+		}
+	}
+
+}

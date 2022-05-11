@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;A&apos; in &apos;Solution.solve(...)&apos; to &apos;tempAr&apos;&#x0D;&#x0A;- Original project: &apos;PairSumdivisibleByM&apos;&#x0D;&#x0A;- Original element: &apos;Solution.solve(int[], int).A&apos;&#x0D;&#x0A;- Renamed element: &apos;A&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;A&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Solution.java[Solution~solve~\[I~I@A!287!309!294!294!\[I!0!false" name="tempAr" references="true" stamp="1637514626112" version="1.0"/>
+</session>

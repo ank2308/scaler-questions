@@ -1,0 +1,45 @@
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+class LRUCache {
+    
+    Deque<Integer> cacheValue;
+    Map<Integer, Integer> mapValue;
+    private final int CACHE_CAPACITY;
+    
+    public LRUCache(int capacity) {
+    	cacheValue = new LinkedList<>();
+    	mapValue = new HashMap<>();
+    	CACHE_CAPACITY = capacity;
+    }
+    
+    public int get(int key) {
+    	if(!cacheValue.contains(key)) {
+    		return -1;
+    	}
+    	cacheValue.remove(key);
+    	cacheValue.add(key);
+    	return mapValue.get(key);        
+    }
+    
+    public void put(int key, int value) {
+    	
+    	if(cacheValue.contains(key)) {
+    		cacheValue.remove(key);
+    		cacheValue.add(key);
+    		mapValue.replace(key, value);
+    	} else {
+    	  	if(cacheValue.size() == CACHE_CAPACITY) {
+    	  		int temp = cacheValue.removeLast();
+    	  		mapValue.remove(temp);
+    	  		cacheValue.add(key);
+    	  		mapValue.put(key, value);
+    	  	} else {
+    	  		cacheValue.add(key);
+    	  		mapValue.put(key, value);
+    	  	}
+    	}
+    }
+}

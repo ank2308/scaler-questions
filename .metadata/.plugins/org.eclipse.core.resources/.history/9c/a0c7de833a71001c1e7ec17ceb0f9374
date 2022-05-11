@@ -1,0 +1,70 @@
+
+public class LargestBalancedBinarySearchTree {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TreeNode A = new TreeNode(1);
+		A.left = new TreeNode(2);
+		A.right = new TreeNode(3);
+		A.right.left = new TreeNode(4);
+		A.right.left.right = new TreeNode(5);
+		HeightBalancedBinarySearchTree heightBalancedBinarySearchTree = new HeightBalancedBinarySearchTree();
+		System.out.println(heightBalancedBinarySearchTree.isValidBST(A));
+	}
+	
+	public int solve(TreeNode A) {
+		is
+    }
+	private class Info {
+		boolean isBalanced;
+		int min;
+		int max;
+		int maxBalanced;
+		public Info(boolean isBalanced, int min, int max, int maxBalanced) {
+			
+			this.isBalanced = isBalanced;
+			this.min = min;
+			this.max = max;
+			this.maxBalanced = maxBalanced;
+		}
+	}
+	
+	private Info isHeightBalanced(TreeNode A) {
+		if(A==null) {
+			return new Info(true, 0, 0, 0);
+		}
+		Info LInfo = isHeightBalanced(A.left);
+		Info RInfo = isHeightBalanced(A.right);	
+		
+		if(A.left == null && A.right == null) {
+			return new Info(true, A.val, A.val, 1);
+		} else if(A.left == null) {
+			boolean isCurrentBalanced = (RInfo.isBalanced && A.val<RInfo.min);
+			return new Info(isCurrentBalanced, A.val, Math.max(A.val,RInfo.max), RInfo.maxBalanced+2);
+		} else if(A.right == null) {
+			boolean isCurrentBalanced = (LInfo.isBalanced && A.val > LInfo.max);
+			if (isCurrentBalanced) {
+				return new Info(isCurrentBalanced, Math.min(A.val,LInfo.min), A.val, LInfo.maxBalanced+1);
+			} else {
+				return new Info(isCurrentBalanced, Math.min(A.val,LInfo.min), A.val, LInfo.maxBalanced);
+			}
+		} else {
+			boolean isCurrentBalanced = (LInfo.isBalanced && RInfo.isBalanced && A.val > LInfo.max && A.val< RInfo.min);
+			if(isCurrentBalanced) { 
+				return new Info(isCurrentBalanced, Math.min(A.val,LInfo.min), Math.max(A.val, RInfo.max), (LInfo.maxBalanced + RInfo.maxBalanced + 1));
+			} else {
+				return new Info(isCurrentBalanced, Math.min(A.val,LInfo.min), Math.max(A.val, RInfo.max), (Math.max(LInfo.maxBalanced, RInfo.maxBalanced) + 1));
+			}
+		}
+		
+	}
+	
+	public int isValidBST(TreeNode A) {
+		if (isHeightBalanced(A).isBalanced) {
+			return 1;
+		} else {
+			return 0;
+		}
+    }
+
+}

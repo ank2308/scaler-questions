@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
+		int oStart = intervals.get(0).start;
+		int oEnd = intervals.get(0).end;
+		int i = 0;
+		for (Interval interval : intervals) {
+			
+		}		
+		return intervals;
+        
+    }
+
+}

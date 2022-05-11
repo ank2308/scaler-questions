@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+
+public class PostOrderTraversal {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	public ArrayList<Integer> postorderTraversal(TreeNode A) {
+		ArrayList<Integer> postOrder = new ArrayList<Integer>();
+		traversal(A, postOrder);
+		return postOrder;
+    }
+	
+	private void traversal (TreeNode A, ArrayList<Integer> postOrder) {
+		if(A == null) {
+			return;
+		}
+		traversal(A.left, postOrder);
+		traversal(A.right, postOrder);
+		postOrder.add(A.val);
+	}
+}

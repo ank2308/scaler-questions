@@ -1,0 +1,81 @@
+
+public class TieRopes {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int [] A = {1, 2, 3, 4, 5};
+		TieRopes tr = new TieRopes();
+		tr.solve(A);
+	}
+	
+	public int solve(int[] A) {
+		int [] minHeap = new int [A.length];
+		int sum = 0;
+		for (int i = 0; i < A.length; i++) {
+			constructMinHeap(A, A.length);
+		}
+		int n = A.length;
+		for (int i = 0; i < A.length; i++) {
+			A = deleteRootfromMinHeap(A, n-i);
+			int minA = A[n];
+			A = deleteRootfromMinHeap(A, n-i+1);
+			int minB = A[n];
+			sum = minA + minB;
+			insertIntoMinHeap(A, n-i, sum);
+		}
+    }
+	
+	private int[] insertIntoMinHeap (int [] arr, int n, int val) {
+		int [] ans = new int [n+1];
+		for (int i = 0; i < n; i++) {
+			ans[i] = arr[i];
+		}
+		ans[ans.length-1] = val;
+		int i = ans.length-1;
+		while(val < ans[(i-1)/2]) {
+			int swap = ans[(i-1)/2];
+			ans[(i-1)/2] = ans[i];
+			ans[i] = swap;
+			i=(i-1)/2;
+		}
+		return ans;
+	}
+	
+	private void constructMinHeap (int [] numbers, int n) {
+		int startIdx = (n/2)-1;
+		for (int i = startIdx; i >=0; i--) {
+			heapifyMin(numbers, n, i);
+		}
+	}
+	
+	private int[] deleteRootfromMinHeap(int [] arr, int n) {
+		int [] ans = new int [n-1];
+		int swap = arr[0];
+		arr[0] = arr[n-1];
+		arr[n-1] = swap;
+		heapifyMin(arr, n-1, 0);
+		for (int i = 0; i < n-1; i++) {
+			ans[i] = arr[i];
+		}
+		return ans;
+	}
+	
+	private void heapifyMin (int [] arr, int n, int root) {
+		int smallest = root;
+		int l = 2*root+1;
+		int r = 2*root+2;
+		if(l<n && arr[l] < arr[smallest]) {
+			smallest = l;
+		}
+		if(r<n && arr[r] < arr[smallest]) {
+			smallest = r;
+		}
+		if(smallest != root) {
+			int swap = arr[root];
+			arr[root] = arr[smallest];
+			arr[smallest] = swap;
+			
+			heapifyMin(arr, n, smallest);
+		}
+	}
+}

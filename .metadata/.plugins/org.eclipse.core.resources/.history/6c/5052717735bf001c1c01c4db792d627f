@@ -1,0 +1,23 @@
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+class LRUCache {
+    
+    Deque<Integer> cacheValue;
+    Map<Integer, Integer> mapValue;
+    public LRUCache(int capacity) {
+    	cacheValue = new LinkedList<>();
+    	mapValue = new HashMap<>();
+    }
+    
+    public int get(int key) {
+		return key;
+        
+    }
+    
+    public void put(int key, int value) {
+        
+    }
+}

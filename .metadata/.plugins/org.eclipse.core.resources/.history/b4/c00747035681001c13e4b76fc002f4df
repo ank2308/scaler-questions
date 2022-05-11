@@ -1,0 +1,26 @@
+
+public class ClimbStairs {
+	 public static void main(String [] args) {
+		 
+		 
+	 }
+	 
+	 public int climbStairs(int A) {
+	        int [] ar = new int [A+1];
+	        for (int i=1; i<=A; i++) {
+	            ar[i] = -1;
+	        }
+	        ar[1] = 1;
+	        ar[2] = 2;
+	        return findWays(A, ar);
+	    }
+
+	    private int findWays(int A, int [] arr) {
+	        if(arr[A] == -1) {
+	            arr[A] = findWays(A-1, arr) + findWays(A-2, arr);
+	            return arr[A];
+	        } else {
+	            return arr[A];
+	        }
+	    }
+}

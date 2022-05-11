@@ -1,0 +1,36 @@
+
+public class NdigitNumbe {
+
+	public static void main(String[] args) {
+		NdigitNumbe ndigitNumbe = new NdigitNumbe();
+		System.out.println(ndigitNumbe.solve(2, 5));
+	}
+	
+	public int solve(int A, int B) {
+		int sum = 0;
+		int [][] dp = new int [A+1][B+1];
+		for (int i = 0; i <= A; i++) {
+			for (int j = 0; j <= B; j++) {
+				dp[i][j] = -1;
+			}
+		}
+		return findSum(A, B, sum, dp);
+    }
+	
+	private int findSum (int i, int j, int sum, int [][] dp) {
+		if(i==0&&j!=0)
+			return sum;
+		if(i>=0&&j==0) {
+			return sum=sum+1;
+			
+		} 
+		if(dp[i][j] != -1) {
+			return dp[i][j];
+		}
+		for (int k = 1; k <= j; k++) {
+			sum = findSum(i-1, j-k, sum, dp);
+			
+		}
+		return dp[i][j] = sum;
+	}
+}

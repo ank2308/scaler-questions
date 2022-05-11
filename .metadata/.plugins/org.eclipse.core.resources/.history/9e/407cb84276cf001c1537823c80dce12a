@@ -1,0 +1,28 @@
+import java.util.HashMap;
+
+public class MakeCircle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String [] A  = {"aab", "bac", "aaa", "cda"};
+		MakeCircle circle = new MakeCircle();
+		System.out.println(circle.solve(A));
+	}
+	
+	public int solve(String[] A) {
+		HashMap<Character, String> stringMap = new HashMap<>();
+		for(String str : A) {
+			stringMap.put(str.charAt(0), str);
+		}
+		for(Character ch : stringMap.keySet()) {
+			String s = stringMap.get(ch);
+			stringMap.remove(ch);
+			char lastChar = s.charAt(s.length()-1);
+			if(!stringMap.containsKey(lastChar)) {
+				return 0;
+			}
+		}
+		return 1;
+	}
+
+}

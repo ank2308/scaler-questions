@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class MakeCircle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String [] A  = {"aab", "bac", "aaa", "cda"};
+		MakeCircle circle = new MakeCircle();
+		System.out.println(circle.solve(A));
+	}
+	
+	public int solve(String[] A) {
+		HashMap<Character, ArrayList<String>> stringMap = new HashMap<>();
+		for(String str : A) {
+			if(!stringMap.containsKey(str.charAt(0))) {
+				ArrayList<String> strings = new ArrayList<>();
+				strings.add(str);
+				stringMap.put(str.charAt(0), strings);
+			} else {
+				ArrayList<String> strings = stringMap.get(str.charAt(0));
+				strings.add(str);
+				stringMap.replace(str.charAt(0), strings);
+			}
+		}
+		String s = A[0].charAt(0);
+		while(!stringMap.isEmpty()) {
+			String s = stringMap.get(ch);
+			stringMap.remove(ch);
+			char lastChar = s.charAt(s.length()-1);
+			if(!stringMap.containsKey(lastChar)) {
+				return 0;
+			}
+		}
+		return 1;
+	}
+
+}

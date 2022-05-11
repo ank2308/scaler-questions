@@ -1,0 +1,17 @@
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
+
+public class MAxSumWithoutLargestElement {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int [] [] A = {{1,2,3,4},{2,3,4,5}};
+		MAxSumWithoutLargestElement axSumWithoutLargestElement = new MAxSumWithoutLargestElement();
+		System.out.println(axSumWithoutLargestElement.adjacent(A));
+	}
+	
+	public int adjacent(int[][] A) {
+		return A[0].length;
+//		int [] finalAr = new int [A.length];
+    }
+
+}

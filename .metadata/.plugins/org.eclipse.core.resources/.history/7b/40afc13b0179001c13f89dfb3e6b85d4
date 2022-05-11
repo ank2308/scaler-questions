@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.Stack;
+
+public class IdenticalBinaryTree {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	public int isSameTree(TreeNode A, TreeNode B) {
+		
+    }
+	public boolean preOrderTraversalIterative(TreeNode A, TreeNode B) {
+		ArrayList<Integer> preOrder = new ArrayList<Integer>();
+		Stack<TreeNode> treeStack = new Stack<>();
+		TreeNode curr = A;
+		while (curr!=null || !treeStack.isEmpty()) {
+			while (curr != null) {
+				preOrder.add(curr.val);
+				if(curr.right != null) {
+					treeStack.add(curr.right);
+				}
+				curr = curr.left;
+			}
+			
+			if(!treeStack.isEmpty()) {
+				curr = treeStack.pop();
+			}
+		}
+		return preOrder;
+    }
+
+}

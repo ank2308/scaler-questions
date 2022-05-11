@@ -1,0 +1,34 @@
+
+public class ProductOfThree {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int [] A = {1,2,3,4,5};
+		ProductOfThree pot = new ProductOfThree();
+		pot.solve(A);
+	}
+	
+	public int[] solve(int[] A) {
+		int [] ans = new int [A.length];
+		for (int i = 1; i <= A.length; i++) {
+			ans = insertIntoMinHeap(ans, i, A[i]);
+		}
+		return ans;
+    }
+	
+	private int[] insertIntoMinHeap (int [] arr, int n, int val) {
+		int [] ans = new int [n+1];
+		for (int i = 0; i < n; i++) {
+			ans[i] = arr[i];
+		}
+		ans[ans.length-1] = val;
+		int i = ans.length-1;
+		while(val < ans[(i-1)/2]) {
+			int swap = ans[(i-1)/2];
+			ans[(i-1)/2] = ans[i];
+			ans[i] = swap;
+			i=(i-1)/2;
+		}
+		return ans;
+	}
+}

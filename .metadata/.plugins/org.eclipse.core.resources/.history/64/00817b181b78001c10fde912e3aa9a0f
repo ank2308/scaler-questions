@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Stack;
+
+public class LCAOfTwoNodes {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TreeNode A = new TreeNode(1) ;
+		A.left = new TreeNode(2);
+		A.right = new TreeNode(3);
+		A.left.left = new TreeNode(4);
+		A.left.right = new TreeNode(5);
+		LCAOfTwoNodes lcaOfTwoNodes = new LCAOfTwoNodes();
+		System.out.println(lcaOfTwoNodes.lca(A, 4, 8));
+	}
+	
+	ArrayList<Integer> tempTraversal = new ArrayList<>();
+	
+	public int lca(TreeNode A, int B, int C) {
+        TreeNode ans = findLCA(A, B, C);
+        if(ans==null) {
+        	return -1;
+        }
+        return ans.val;
+    }
+	
+	public TreeNode findLCA(TreeNode A, int B, int C) {
+        if(A == null || A.val==B || A.val==C) {
+            return A;
+        }
+        TreeNode left = findLCA(A.left, B, C);
+        TreeNode right = findLCA(A.right, B, C);
+        if(left == null ){
+            return right;
+        } else if (right == null){
+            return left;
+        } else {
+            return A;
+        }
+    }
+	
+	private ArrayList<Integer> findTraversal (ArrayList<Integer> traversal, TreeNode A, int val) {
+		if(A==null) {
+			return traversal;
+		}
+		traversal.add(A.val);
+		if(A.val == val) {
+			Collections.copy(tempTraversal, traversal);
+			return traversal;
+		}		
+		findTraversal(traversal, A.left, val);
+		traversal.remove(traversal.size()-1);
+		findTraversal(traversal, A.right, val);
+		traversal.remove(traversal.size()-1);
+		return null;
+	}
+
+}
